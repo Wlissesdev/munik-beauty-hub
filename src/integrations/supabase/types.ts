@@ -14,7 +14,259 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      appointments: {
+        Row: {
+          client_id: string
+          created_at: string
+          id: string
+          notes: string | null
+          professional: string | null
+          scheduled_at: string
+          service_id: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          client_id: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          professional?: string | null
+          scheduled_at: string
+          service_id: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          client_id?: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          professional?: string | null
+          scheduled_at?: string
+          service_id?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appointments_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "appointments_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      clients: {
+        Row: {
+          birth_date: string | null
+          created_at: string
+          email: string | null
+          how_found: string | null
+          id: string
+          name: string
+          notes: string | null
+          phone: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          birth_date?: string | null
+          created_at?: string
+          email?: string | null
+          how_found?: string | null
+          id?: string
+          name: string
+          notes?: string | null
+          phone: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          birth_date?: string | null
+          created_at?: string
+          email?: string | null
+          how_found?: string | null
+          id?: string
+          name?: string
+          notes?: string | null
+          phone?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          brand: string | null
+          category: string | null
+          cost_price: number
+          created_at: string
+          id: string
+          min_stock: number
+          name: string
+          stock_quantity: number
+          user_id: string
+        }
+        Insert: {
+          brand?: string | null
+          category?: string | null
+          cost_price?: number
+          created_at?: string
+          id?: string
+          min_stock?: number
+          name: string
+          stock_quantity?: number
+          user_id: string
+        }
+        Update: {
+          brand?: string | null
+          category?: string | null
+          cost_price?: number
+          created_at?: string
+          id?: string
+          min_stock?: number
+          name?: string
+          stock_quantity?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          id: string
+          instagram: string | null
+          owner_name: string | null
+          phone: string | null
+          salon_name: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          instagram?: string | null
+          owner_name?: string | null
+          phone?: string | null
+          salon_name?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          instagram?: string | null
+          owner_name?: string | null
+          phone?: string | null
+          salon_name?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      service_history: {
+        Row: {
+          appointment_id: string | null
+          client_id: string
+          created_at: string
+          id: string
+          notes: string | null
+          price_charged: number
+          professional: string | null
+          service_date: string
+          service_id: string
+          user_id: string
+        }
+        Insert: {
+          appointment_id?: string | null
+          client_id: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          price_charged?: number
+          professional?: string | null
+          service_date?: string
+          service_id: string
+          user_id: string
+        }
+        Update: {
+          appointment_id?: string | null
+          client_id?: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          price_charged?: number
+          professional?: string | null
+          service_date?: string
+          service_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "service_history_appointment_id_fkey"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "service_history_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "service_history_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      services: {
+        Row: {
+          active: boolean
+          category: string
+          created_at: string
+          duration_minutes: number
+          id: string
+          name: string
+          price: number
+          user_id: string
+        }
+        Insert: {
+          active?: boolean
+          category?: string
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          name: string
+          price?: number
+          user_id: string
+        }
+        Update: {
+          active?: boolean
+          category?: string
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          name?: string
+          price?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
